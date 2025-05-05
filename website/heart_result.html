@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Results - MedNexus</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/">
+                            <i class="fas fa-hospital-user text-3xl text-blue-500 mr-2"></i>
+                            <span class="text-2xl font-bold text-gray-800">MedNexus</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Prediction Results -->
+    <div class="pt-24 pb-12 md:pt-32 md:pb-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Heart Disease Prediction Results</h1>
+                
+                <div class="mb-8 p-6 bg-blue-50 rounded-lg">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Prediction:</h2>
+                    <p class="text-lg">{{ prediction }}</p>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Medical Advice:</h2>
+                    <div class="prose prose-blue">
+                        {{ advice|safe }}
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-between">
+                    <a href="/heart" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                        &larr; Back to Form
+                    </a>
+                    <a href="/" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700">
+                        Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">© 2023 MedNexus. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="js/custom.js"></script>
+</body>
+</html>

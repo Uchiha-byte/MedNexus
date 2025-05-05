@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedNexus - AI-Powered Healthcare</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        /* 3D Button Styles */
+        .btn-3d {
+            position: relative;
+            display: inline-block;
+            padding: 12px 24px;
+            color: white;
+            background: var(--primary);
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 6px 0 var(--primary-dark);
+            transform: translateY(0);
+        }
+        
+        .btn-3d:hover {
+            transform: translateY(2px);
+            box-shadow: 0 4px 0 var(--primary-dark);
+        }
+        
+        .btn-3d:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 var(--primary-dark);
+        }
+        
+        .btn-3d.green {
+            background: var(--secondary);
+            box-shadow: 0 6px 0 #059669;
+        }
+        
+        .btn-3d.green:hover {
+            box-shadow: 0 4px 0 #059669;
+        }
+        
+        .btn-3d.green:active {
+            box-shadow: 0 0px 0 #059669;
+        }
+        
+        /* Card Hover Effects */
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Health Metrics Animation */
+        .metrics-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .metrics-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: all 0.5s ease;
+        }
+        
+        .metrics-card:hover::before {
+            transform: scale(10);
+        }
+        
+        /* Hero Section Animation */
+        .hero-text {
+            position: relative;
+        }
+        
+        .hero-text::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .hero-text:hover::after {
+            width: 100%;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Gradient Background */
+        .bg-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Particles container */
+        #particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles.js Background -->
+    <div id="particles-container"></div>
+    
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-hospital-user text-3xl text-blue-500 mr-2"></i>
+                        <span class="text-2xl font-bold text-gray-800">MedNexus</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#features" class="text-gray-600 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">Features</a>
+                    <a href="#diseases" class="text-gray-600 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">Diseases</a>
+                    <a href="#ai-assistant" class="text-gray-600 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">AI Assistant</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">Success Stories</a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#get-started" class="btn-3d">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight hero-text">
+                        Your AI-Powered <span class="text-blue-500">Healthcare</span> Companion
+                    </h1>
+                    <p class="mt-4 text-xl text-gray-600">
+                        Advanced disease prediction and personalized health insights powered by machine learning.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="#diseases" class="btn-3d">Predict Now</a>
+                        <a href="#ai-assistant" class="btn-3d green">AI Assistant</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://cdn.pixabay.com/photo/2021/11/05/12/00/doctor-6771483_1280.png" alt="Healthcare Professional" class="w-full max-w-md float">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="metrics-card bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-3xl font-bold text-blue-500">95%</h3>
+                    <p class="text-gray-600 mt-1">Accuracy Rate</p>
+                </div>
+                <div class="metrics-card bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-3xl font-bold text-blue-500">6+</h3>
+                    <p class="text-gray-600 mt-1">Diseases Covered</p>
+                </div>
+                <div class="metrics-card bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-3xl font-bold text-blue-500">&lt;1s</h3>
+                    <p class="text-gray-600 mt-1">Response Time</p>
+                </div>
+                <div class="metrics-card bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-3xl font-bold text-blue-500">10K+</h3>
+                    <p class="text-gray-600 mt-1">Active Users</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800">Key Features</h2>
+                <p class="mt-4 text-xl text-gray-600">Discover what makes MedNexus the leading healthcare prediction platform</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">AI-Powered Diagnosis</h3>
+                    <p class="mt-4 text-gray-600">
+                        Advanced machine learning algorithms for accurate disease prediction and personalized health insights.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Comprehensive Analysis</h3>
+                    <p class="mt-4 text-gray-600">
+                        Detailed health metrics and predictive analytics for multiple disease conditions.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Expert Guidance</h3>
+                    <p class="mt-4 text-gray-600">
+                        AI-generated medical advice and recommendations based on your health data.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disease Prediction Section -->
+    <section id="diseases" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800">Disease Prediction Modules</h2>
+                <p class="mt-4 text-xl text-gray-600">Get accurate predictions for various health conditions</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-red-100 flex items-center justify-center">
+                        <i class="fas fa-heartbeat text-red-500 text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Heart Disease</h3>
+                        <p class="mt-2 text-gray-600">
+                            Predict your risk of heart disease based on clinical parameters.
+                        </p>
+                        <div class="mt-6">
+                            <a href="heart" class="btn-3d w-full inline-block text-center">Predict</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-lungs text-purple-500 text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Kidney Disease</h3>
+                        <p class="mt-2 text-gray-600">
+                            Evaluate your kidney health with advanced machine learning.
+                        </p>
+                        <div class="mt-6">
+                            <a href="kidney" class="btn-3d w-full inline-block text-center">Predict</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-tint text-blue-500 text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Diabetes</h3>
+                        <p class="mt-2 text-gray-600">
+                            Check your diabetes risk based on your health parameters.
+                        </p>
+                        <div class="mt-6">
+                            <a href="diabetes" class="btn-3d w-full inline-block text-center">Predict</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-yellow-100 flex items-center justify-center">
+                        <i class="fas fa-prescription-bottle text-yellow-500 text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Liver Disease</h3>
+                        <p class="mt-2 text-gray-600">
+                            Assess your liver health with our predictive model.
+                        </p>
+                        <div class="mt-6">
+                            <a href="liver" class="btn-3d w-full inline-block text-center">Predict</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-brain text-pink-500 text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Stroke</h3>
+                        <p class="mt-2 text-gray-600">
+                            Determine your stroke risk with our accurate prediction model.
+                        </p>
+                        <div class="mt-6">
+                            <a href="stroke" class="btn-3d w-full inline-block text-center">Predict</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-48 bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-file-medical-alt text-green-500 text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">AI Analysis</h3>
+                        <p class="mt-2 text-gray-600">
+                            Upload your medical report for comprehensive AI analysis.
+                        </p>
+                        <div class="mt-6">
+                            <a href="ai" class="btn-3d green w-full inline-block text-center">Analyze</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800">How It Works</h2>
+                <p class="mt-4 text-xl text-gray-600">Simple steps to get accurate health predictions</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="h-20 w-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-clipboard-list text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Input Health Data</h3>
+                    <p class="mt-2 text-gray-600">
+                        Enter your medical parameters and symptoms
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="h-20 w-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-robot text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">AI Analysis</h3>
+                    <p class="mt-2 text-gray-600">
+                        Our advanced algorithms process your data
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="h-20 w-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-pie text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Predictive Analysis</h3>
+                    <p class="mt-2 text-gray-600">
+                        Get accurate disease predictions
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="h-20 w-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lightbulb text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Personalized Advice</h3>
+                    <p class="mt-2 text-gray-600">
+                        Receive AI-generated medical recommendations
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant Section -->
+    <section id="ai-assistant" class="py-16 bg-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white">AI Medical Assistant</h2>
+                    <p class="mt-4 text-xl text-white opacity-90">
+                        Experience the power of our AI-driven medical assistant. Upload your medical reports and receive instant analysis and personalized recommendations.
+                    </p>
+                    <div class="mt-8">
+                        <a href="ai" class="btn-3d green">Talk to AI Assistant</a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://cdn.pixabay.com/photo/2021/11/04/06/27/artificial-intelligence-6767502_1280.png" alt="AI Assistant" class="w-full max-w-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Tips Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800">Daily Health Tips</h2>
+                <p class="mt-4 text-xl text-gray-600">Simple ways to improve your health every day</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-running text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Stay Active</h3>
+                    <p class="mt-4 text-gray-600">
+                        Regular exercise can reduce the risk of chronic diseases by up to 50%.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-apple-alt text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Balanced Diet</h3>
+                    <p class="mt-4 text-gray-600">
+                        A healthy diet can prevent 80% of heart disease and diabetes cases.
+                    </p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-md">
+                    <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bed text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Quality Sleep</h3>
+                    <p class="mt-4 text-gray-600">
+                        7-8 hours of sleep can improve immune function and mental health.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section id="get-started" class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-800">Ready to Take Control of Your Health?</h2>
+            <p class="mt-4 text-xl text-gray-600">
+                Start your journey toward better health with our AI-powered disease prediction platform.
+            </p>
+            <div class="mt-8">
+                <a href="#diseases" class="btn-3d">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center">
+                        <i class="fas fa-hospital-user text-3xl text-blue-500 mr-2"></i>
+                        <span class="text-2xl font-bold">MedNexus</span>
+                    </div>
+                    <p class="mt-4 text-gray-400">
+                        AI-Powered Healthcare Companion
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-blue-500">Features</a></li>
+                        <li><a href="#diseases" class="text-gray-400 hover:text-blue-500">Disease Prediction</a></li>
+                        <li><a href="#ai-assistant" class="text-gray-400 hover:text-blue-500">AI Assistant</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-500">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-500">Health Tips</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-500">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-envelope text-blue-500 mr-2"></i> <a href="mailto:info@mednexus.ai" class="text-gray-400 hover:text-blue-500">info@mednexus.ai</a></li>
+                        <li class="flex items-center"><i class="fas fa-phone text-blue-500 mr-2"></i> <a href="tel:+1234567890" class="text-gray-400 hover:text-blue-500">+123 456 7890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">© 2023 MedNexus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Account for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .metrics-card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Initialize particles.js
+        particlesJS("particles-container", {
+          particles: {
+            number: {
+              value: 80,
+              density: {
+                enable: true,
+                value_area: 800
+              }
+            },
+            color: {
+              value: "#3b82f6"
+            },
+            shape: {
+              type: "circle",
+              stroke: {
+                width: 0,
+                color: "#000000"
+              },
+              polygon: {
+                nb_sides: 5
+              }
+            },
+            opacity: {
+              value: 0.5,
+              random: false,
+              anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+              }
+            },
+            size: {
+              value: 3,
+              random: true,
+              anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false
+              }
+            },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#3b82f6",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 2,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+              attract: {
+                enable: false,
+                rotateX: 600,
+                rotateY: 1200
+              }
+            }
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: {
+                enable: true,
+                mode: "grab"
+              },
+              onclick: {
+                enable: true,
+                mode: "push"
+              },
+              resize: true
+            },
+            modes: {
+              grab: {
+                distance: 140,
+                line_linked: {
+                  opacity: 1
+                }
+              },
+              bubble: {
+                distance: 400,
+                size: 40,
+                duration: 2,
+                opacity: 8,
+                speed: 3
+              },
+              repulse: {
+                distance: 200,
+                duration: 0.4
+              },
+              push: {
+                particles_nb: 4
+              },
+              remove: {
+                particles_nb: 2
+              }
+            }
+          },
+          retina_detect: true
+        });
+    </script>
+</body>
+</html> 
