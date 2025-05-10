@@ -205,6 +205,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Streamlit for the application framework
 - All contributors and maintainers
 
-## Contact
 
-For any queries or suggestions, please reach out to the project maintainers. #
