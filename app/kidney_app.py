@@ -3,12 +3,27 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+from utils import get_rotating_fact, analyze_pdf, KIDNEY_FACTS
 
 # Configure Google Generative AI with your API key
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
 
 def display():
     st.title("Kidney Disease Prediction App")
+    
+    # Display rotating kidney fact
+    st.info(f"🫘 Kidney Fact of the Day: {get_rotating_fact(KIDNEY_FACTS)}")
+    
+    # Add PDF analysis section
+    st.subheader("Analyze Kidney-Related PDF Reports")
+    uploaded_file = st.file_uploader("Upload a kidney-related medical report (PDF)", type=['pdf'])
+    
+    if uploaded_file is not None:
+        st.write("Analyzing your report...")
+        analysis = analyze_pdf(uploaded_file, "kidney")
+        st.write("**Report Analysis:**")
+        st.write(analysis)
+
     st.write("Enter the test values below to predict the likelihood of kidney disease.")
 
     # Get the current directory

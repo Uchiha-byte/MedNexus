@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+from utils import get_rotating_fact, analyze_pdf, DIABETES_FACTS
 
 # Configure Google Generative AI
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
@@ -10,6 +11,19 @@ genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace wi
 # Define the main display function
 def display():
     st.title("Diabetes Prediction App")
+    
+    # Display rotating diabetes fact
+    st.info(f"💉 Diabetes Fact of the Day: {get_rotating_fact(DIABETES_FACTS)}")
+    
+    # Add PDF analysis section
+    st.subheader("Analyze Diabetes-Related PDF Reports")
+    uploaded_file = st.file_uploader("Upload a diabetes-related medical report (PDF)", type=['pdf'])
+    
+    if uploaded_file is not None:
+        st.write("Analyzing your report...")
+        analysis = analyze_pdf(uploaded_file, "diabetes")
+        st.write("**Report Analysis:**")
+        st.write(analysis)
 
     # Get the current directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -35,15 +49,15 @@ def display():
 
         # Arrange inputs in columns
         with col1:
-            BMI = st.slider("BMI", min_value=10, max_value=50, value=25)
+            BMI = st.slider("BMI | 18.5 - 24.9 kg/m²", min_value=10, max_value=50, value=25)
             Age = st.slider("Age", min_value=0, max_value=120, value=30)
-            Glucose = st.slider("Glucose", min_value=0, max_value=200, value=100)
-            BloodPressure = st.slider("BloodPressure", min_value=40, max_value=200, value=70)
+            Glucose = st.slider("Glucose | 70 - 110 mg/dL", min_value=0, max_value=200, value=100)
+            BloodPressure = st.slider("BloodPressure | 70 - 120 mmHg", min_value=40, max_value=200, value=70)
         with col2:
-            Insulin = st.number_input("Insulin", min_value=0, max_value=600, value=100)
-            DiabetesPedigreeFunction = st.number_input("DiabetesPedigreeFunction", min_value=0.0, max_value=2.5, value=0.5)
-            Pregnancies = st.number_input("Pregnancies", min_value=0, max_value=120, step=1, value=1)
-            SkinThickness = st.number_input("SkinThickness", min_value=0, max_value=300, value=20)
+            Insulin = st.number_input("Insulin | 0 - 846 µIU/mL", min_value=0, max_value=600, value=100)
+            DiabetesPedigreeFunction = st.number_input("DiabetesPedigreeFunction | 0.08 - 0.42", min_value=0.0, max_value=2.5, value=0.5)
+            Pregnancies = st.number_input("Pregnancies | 0 - 17", min_value=0, max_value=120, step=1, value=1)
+            SkinThickness = st.number_input("SkinThickness | 0 - 99 mm", min_value=0, max_value=300, value=20)
 
 
         # Prepare the input data for prediction

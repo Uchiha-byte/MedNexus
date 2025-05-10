@@ -3,12 +3,28 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+from utils import get_rotating_fact, analyze_pdf, LIVER_FACTS
 
-# Configure Google Generative AI with your API key
+# Configure Google Generative AI
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
 
+# Define the main display function
 def display():
     st.title("Liver Disease Prediction App")
+    
+    # Display rotating liver fact
+    st.info(f"🫁 Liver Fact of the Day: {get_rotating_fact(LIVER_FACTS)}")
+    
+    # Add PDF analysis section
+    st.subheader("Analyze Liver-Related PDF Reports")
+    uploaded_file = st.file_uploader("Upload a liver-related medical report (PDF)", type=['pdf'])
+    
+    if uploaded_file is not None:
+        st.write("Analyzing your report...")
+        analysis = analyze_pdf(uploaded_file, "liver")
+        st.write("**Report Analysis:**")
+        st.write(analysis)
+
     st.write("Enter the medical test values below to predict the likelihood of liver disease.")
 
     # Get the current directory
@@ -34,14 +50,14 @@ def display():
         # Arrange inputs in columns
         with col1:
         # Input fields with default values
-            total_bilirubin = st.number_input("Total Bilirubin", min_value=0.0, max_value=10.0, format="%.2f", value=1.0)
-            direct_bilirubin = st.number_input("Direct Bilirubin", min_value=0.0, max_value=5.0, format="%.2f", value=0.3)
-            alkaline_phosphatase = st.number_input("Alkaline Phosphatase", min_value=0, max_value=2000, format="%d", value=100)
+            total_bilirubin = st.number_input("Total Bilirubin | 0.0 - 10.0 mg/dL", min_value=0.0, max_value=10.0, format="%.2f", value=1.0)
+            direct_bilirubin = st.number_input("Direct Bilirubin | 0.0 - 5.0 mg/dL", min_value=0.0, max_value=5.0, format="%.2f", value=0.3)
+            alkaline_phosphatase = st.number_input("Alkaline Phosphatase | 0 - 2000 U/L", min_value=0, max_value=2000, format="%d", value=100)
         with col2:
-            alanine_aminotransferase = st.number_input("Alamine Aminotransferase (Sgpt)", min_value=0, max_value=1000, format="%d", value=20)
-            total_proteins = st.number_input("Total Proteins", min_value=0.0, max_value=10.0, format="%.2f", value=6.8)
-            albumin = st.number_input("Albumin", min_value=0.0, max_value=5.0, format="%.2f", value=3.5)
-            albumin_globulin_ratio = st.number_input("Albumin-Globulin Ratio", min_value=0.0, max_value=5.0, format="%.2f", value=1.1)
+            alanine_aminotransferase = st.number_input("Alamine Aminotransferase (Sgpt) | 0 - 1000 U/L", min_value=0, max_value=1000, format="%d", value=20)
+            total_proteins = st.number_input("Total Proteins | 0.0 - 10.0 g/dL", min_value=0.0, max_value=10.0, format="%.2f", value=6.8)
+            albumin = st.number_input("Albumin | 0.0 - 5.0 g/dL", min_value=0.0, max_value=5.0, format="%.2f", value=3.5)
+            albumin_globulin_ratio = st.number_input("Albumin-Globulin Ratio | 0.0 - 5.0", min_value=0.0, max_value=5.0, format="%.2f", value=1.1)
 
         # Prediction button
         if st.form_submit_button("Predict"):

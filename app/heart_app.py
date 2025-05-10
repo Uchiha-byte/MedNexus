@@ -3,13 +3,73 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+import PyPDF2
+import random
+from datetime import datetime
 
 # Configure Google Generative AI with your API key
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
 
+# Heart facts that will rotate
+HEART_FACTS = [
+    "The heart beats about 100,000 times every day.",
+    "Your heart pumps about 2,000 gallons of blood every day.",
+    "The heart can continue beating even when disconnected from the body.",
+    "The heart begins beating at four weeks after conception.",
+    "The heart is the first organ to form during development.",
+    "The heart has its own electrical system.",
+    "The heart can beat on its own without any input from the brain.",
+    "The heart pumps blood to all parts of the body except the corneas.",
+    "The heart is located slightly to the left of the center of the chest.",
+    "The heart is about the size of a fist in an adult."
+]
+
+def get_rotating_fact():
+    # Use the current date to determine which fact to show
+    today = datetime.now().date()
+    fact_index = (today.day + today.month) % len(HEART_FACTS)
+    return HEART_FACTS[fact_index]
+
+def analyze_pdf(pdf_file):
+    try:
+        # Read the PDF file
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+
+        # Prepare prompt for AI analysis
+        prompt = f"""Analyze this heart-related medical report and provide a summary of key findings and recommendations. 
+        Focus on heart-related information and make the response concise and in bullet points.
+        
+        Report content:
+        {text}
+        """
+
+        # Generate response using Gemini
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error analyzing PDF: {str(e)}"
+
 # Define the main display function for the Heart Disease Prediction App
 def display():
     st.title("Heart Disease Prediction App")
+    
+    # Display rotating heart fact
+    st.info(f"💓 Heart Fact of the Day: {get_rotating_fact()}")
+    
+    # Add PDF analysis section
+    st.subheader("Analyze Heart-Related PDF Reports")
+    uploaded_file = st.file_uploader("Upload a heart-related medical report (PDF)", type=['pdf'])
+    
+    if uploaded_file is not None:
+        st.write("Analyzing your report...")
+        analysis = analyze_pdf(uploaded_file)
+        st.write("**Report Analysis:**")
+        st.write(analysis)
+    
     st.write("Enter the details below to predict the likelihood of heart disease.")
 
     # Get the current directory

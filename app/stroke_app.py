@@ -3,12 +3,27 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+from utils import get_rotating_fact, analyze_pdf, STROKE_FACTS
 
 # Configure Google Generative AI with your API key
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
 
 def display():
     st.title("Stroke Prediction App")
+    
+    # Display rotating stroke fact
+    st.info(f"🧠 Stroke Fact of the Day: {get_rotating_fact(STROKE_FACTS)}")
+    
+    # Add PDF analysis section
+    st.subheader("Analyze Stroke-Related PDF Reports")
+    uploaded_file = st.file_uploader("Upload a stroke-related medical report (PDF)", type=['pdf'])
+    
+    if uploaded_file is not None:
+        st.write("Analyzing your report...")
+        analysis = analyze_pdf(uploaded_file, "stroke")
+        st.write("**Report Analysis:**")
+        st.write(analysis)
+
     st.write("Enter the following information to predict the likelihood of stroke.")
 
     # Get the current directory
@@ -46,8 +61,8 @@ def display():
             age = st.slider("Age", 0, 100, 25)
             hypertension = st.selectbox("Hypertension (0 = No, 1 = Yes)", [0, 1], index=0)
             heart_disease = st.selectbox("Heart Disease (0 = No, 1 = Yes)", [0, 1], index=0)
-            avg_glucose_level = st.number_input("Average Glucose Level", min_value=0.0, value=85.0)
-            bmi = st.number_input("BMI", min_value=0.0, value=24.0)
+            avg_glucose_level = st.number_input("Average Glucose Level | 0.0 - 200.0 mg/dL", min_value=0.0, value=85.0)
+            bmi = st.number_input("BMI | 18.5 - 24.9 kg/m²", min_value=0.0, value=24.0)
 
 
         # Prepare input data
