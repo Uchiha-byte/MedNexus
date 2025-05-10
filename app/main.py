@@ -35,7 +35,7 @@ if page == "Home":
         st.markdown("""
         <div style='text-align: center;'>
             <h1 style='font-size: 4rem; font-weight: bold; color: #2196F3; margin-bottom: 0; text-shadow: 0 0 10px rgba(33, 150, 243, 0.5);'>MED NEXUS</h1>
-            <p style='font-size: 1.5rem; color: #666;'>Your AI-Powered Healthcare Companion</p>
+            <p style='font-size: 1.5rem; color: #666;'>Where ML Meets Lifesaving🩺</p>
         </div>
         """, unsafe_allow_html=True)
     
