@@ -1,4 +1,5 @@
-# Disease Prediction System
+# MED NEXUS
+# Multi-Disease Prediction System
 
 A comprehensive machine learning-based system for predicting various diseases using medical parameters and symptoms. This project includes both a Streamlit-based application and a web interface for disease prediction.
 
