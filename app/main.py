@@ -113,7 +113,7 @@ with st.sidebar:
     page = st.radio(
         "Navigation",
         ["Home", "AI Assistance", "Heart Disease", "Kidney Disease", "Diabetes", "Liver Disease", "Stroke"],
-        format_func=lambda x: f"📊 {x}" if x == "Home" else f"🤖 {x}" if x == "AI Assistance" else f"❤️ {x}" if x == "Heart Disease" else f"🫁 {x}" if x == "Kidney Disease" else f"🩸 {x}" if x == "Diabetes" else f"🫀 {x}" if x == "Liver Disease" else f"🧠 {x}"
+        format_func=lambda x: f"📊 {x}" if x == "Home" else f"🤖 {x}" if x == "AI Assistance" else f"❤️ {x}" if x == "Heart Disease" else f"🫘 {x}" if x == "Kidney Disease" else f"🩸 {x}" if x == "Diabetes" else f"🫀 {x}" if x == "Liver Disease" else f"🧠 {x}"
     )
 
 # Homepage content
@@ -272,7 +272,7 @@ elif page == "Heart Disease":
     heart_disease_display()
 
 elif page == "Kidney Disease":
-    st.header("🫁 Kidney Disease Prediction")
+    st.header("🫘 Kidney Disease Prediction")
     kidney_disease_display()
 
 elif page == "Diabetes":
