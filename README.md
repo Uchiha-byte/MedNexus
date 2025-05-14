@@ -1,6 +1,6 @@
-# MedNexus - Medical Disease Prediction Platform
+# MedNexus - Advance Disease Diagnosis with ML and AI
 
-MedNexus is a comprehensive medical disease prediction platform that uses machine learning to predict various diseases including heart disease, kidney disease, diabetes, liver disease, and stroke. The platform provides an intuitive web interface for users to input their medical data and receive predictions.
+MedNexus is a comprehensive Advance Disease Diagonosis with ML and AI platform that uses machine learning to predict various diseases including heart disease, kidney disease, diabetes, liver disease, and stroke. The platform provides an intuitive web interface for users to input their medical data and receive predictions.
 
 ## Features
 
@@ -26,7 +26,7 @@ MedNexus is a comprehensive medical disease prediction platform that uses machin
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/MedNexus.git
+git clone https://github.com/uchiha_byte/MedNexus.git
 cd MedNexus
 ```
 
