@@ -1,0 +1,446 @@
+/* Dark theme background */
+.stApp {
+    background-color: #1a1a1a;
+}
+
+/* MedNexus header styles */
+.mednexus-header {
+    text-align: center;
+    padding: 3rem 0;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    position: relative;
+    border-radius: 20px;
+    max-width: 1200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Subtle background effects */
+.mednexus-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Floating particles effect */
+.mednexus-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+    animation: float 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+/* Enhanced title text effects */
+.mednexus-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #64B5F6 0%, #81C784 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                     0 0 20px rgba(100, 181, 246, 0.3);
+    }
+    50% {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                     0 0 30px rgba(100, 181, 246, 0.5);
+    }
+}
+
+/* Enhanced subtitle text effects */
+.mednexus-subtitle {
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #90CAF9 0%, #A5D6A7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    animation: subtitleFloat 4s ease-in-out infinite;
+}
+
+@keyframes subtitleFloat {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+/* Main container styles */
+.auth-container {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    background: #2d2d2d;
+    border: 1px solid #404040;
+    animation: containerFade 0.5s ease-out;
+}
+
+@keyframes containerFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced title styles */
+.auth-title {
+    text-align: center;
+    color: #64B5F6;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: titleSlide 0.5s ease-out;
+}
+
+@keyframes titleSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Enhanced subtitle styles */
+.auth-subtitle {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    animation: subtitleSlide 0.5s ease-out 0.2s both;
+}
+
+@keyframes subtitleSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Form styles */
+.stForm {
+    padding: 1rem 0;
+    animation: formFade 0.5s ease-out 0.4s both;
+}
+
+@keyframes formFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Input field styles */
+.stTextInput > div > div > input {
+    border-radius: 8px;
+    border: 2px solid #404040;
+    padding: 0.8rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #64B5F6;
+    box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Label styles */
+.stTextInput > div > label {
+    color: #b0b0b0;
+    transition: all 0.3s ease;
+}
+
+.stTextInput > div > label:hover {
+    color: #64B5F6;
+}
+
+/* Button styles */
+.stButton > button {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.stButton > button:active {
+    transform: translateY(0);
+}
+
+/* Link styles */
+.auth-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #404040;
+    animation: linkFade 0.5s ease-out 0.6s both;
+}
+
+@keyframes linkFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.auth-link button {
+    background: none;
+    border: none;
+    color: #64B5F6;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.auth-link button:hover {
+    color: #42A5F5;
+    transform: translateY(-2px);
+}
+
+.auth-link button::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #42A5F5;
+    transition: width 0.3s ease;
+}
+
+.auth-link button:hover::after {
+    width: 100%;
+}
+
+/* Error message styles */
+.stAlert {
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid #f44336;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Success message styles */
+.stSuccess {
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid #4CAF50;
+    animation: successPulse 0.5s ease-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Welcome screen styles */
+.welcome-container {
+    text-align: center;
+    padding: 2rem;
+    background: #2d2d2d;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    border: 1px solid #404040;
+    max-width: 600px;
+    margin: 2rem auto;
+    animation: welcomeFade 0.5s ease-out;
+}
+
+@keyframes welcomeFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.welcome-title {
+    font-size: 3rem;
+    color: #64B5F6;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: welcomeTitleSlide 0.5s ease-out 0.2s both;
+}
+
+@keyframes welcomeTitleSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-subtitle {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    margin-bottom: 2rem;
+    animation: welcomeSubtitleSlide 0.5s ease-out 0.4s both;
+}
+
+@keyframes welcomeSubtitleSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    animation: optionsFade 0.5s ease-out 0.6s both;
+}
+
+@keyframes optionsFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Radio button styles */
+.stRadio > div {
+    color: #b0b0b0;
+    transition: all 0.3s ease;
+}
+
+.stRadio > div:hover {
+    color: #64B5F6;
+}
+
+/* Form submit button */
+.stForm > div > div > button {
+    background: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stForm > div > div > button:hover {
+    background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.stForm > div > div > button:active {
+    transform: translateY(0);
+} 

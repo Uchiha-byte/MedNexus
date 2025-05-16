@@ -1,0 +1,207 @@
+/* Sidebar styles */
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-logo-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    border-radius: 50%;
+    z-index: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    border: 3px solid #43A047;
+}
+
+/* Rotating gradient overlay */
+.sidebar-logo-circle::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 180%;
+    height: 180%;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.10) 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.10) 0%, transparent 60%);
+    animation: sidebarRotate 18s linear infinite;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+@keyframes sidebarRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Floating particles */
+.sidebar-logo-circle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.12) 0%, transparent 20%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.10) 0%, transparent 20%),
+        radial-gradient(circle at 50% 60%, rgba(255,255,255,0.07) 0%, transparent 30%);
+    animation: sidebarFloat 7s ease-in-out infinite;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+@keyframes sidebarFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.03); }
+}
+
+.sidebar-logo-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.sidebar-logo-content img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-bottom: 0.3rem;
+    object-fit: contain;
+    background: rgba(255,255,255,0.08);
+}
+
+.sidebar-logo-content h1 {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #0D2346;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), 0 0 8px #64B5F6;
+    letter-spacing: 1px;
+    animation: sidebarTitleGlow 3s ease-in-out infinite, sidebarTitleFloat 4s ease-in-out infinite;
+}
+
+@keyframes sidebarTitleGlow {
+    0%, 100% {
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), 0 0 8px #64B5F6;
+    }
+    50% {
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.22), 0 0 16px #64B5F6;
+    }
+}
+
+@keyframes sidebarTitleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.sidebar-logo-content p {
+    font-size: 0.52rem;
+    color: #fff;
+    margin: 0.12rem 0 0 0;
+    font-style: italic;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.13), 0 0 4px #90CAF9;
+    animation: sidebarSloganFloat 4s ease-in-out infinite, sloganFade 0.5s ease-out 0.3s both;
+    text-align: center;
+}
+
+@keyframes sidebarSloganFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+@keyframes sloganFade {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+    to {
+        opacity: 0.95;
+        transform: translateY(0);
+    }
+}
+
+/* Welcome message styles */
+.sidebar-welcome {
+    text-align: center;
+    color: #64B5F6;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(100, 181, 246, 0.1);
+    animation: welcomeFade 0.5s ease-out;
+}
+
+@keyframes welcomeFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logout button styles */
+.sidebar-logout {
+    margin: 1rem 0;
+}
+
+.sidebar-logout button {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.sidebar-logout button:hover {
+    background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-logout button:active {
+    transform: translateY(0);
+}
+
+/* Navigation styles */
+.sidebar-nav {
+    margin-top: 1rem;
+}
+
+.sidebar-nav .stRadio > div {
+    color: #b0b0b0;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav .stRadio > div:hover {
+    color: #64B5F6;
+    transform: translateX(5px);
+} 

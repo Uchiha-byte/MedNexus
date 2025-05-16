@@ -8,10 +8,12 @@ from liver_app import display as liver_disease_display
 from stroke_app import display as stroke_display
 from ai_app import display as ai_display
 from ai_app import queries as ai_queries
+from auth.auth_pages import init_auth
 import time
 from datetime import datetime
 import os
 import base64
+from auth.database import create_user, verify_user, init_db
 
 def get_base64_encoded_image():
     """Get the base64 encoded image for the logo"""
@@ -34,6 +36,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Initialize authentication
+if not init_auth():
+    st.stop()
+
 # Function to display logo
 def display_logo(width=100):
     logo_paths = [
@@ -46,75 +52,59 @@ def display_logo(width=100):
             return st.image(logo_path, width=width)
     return None
 
-# Sidebar navigation with logo
+# Function to load CSS
+def load_css():
+    css_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'sidebar.css')
+    with open(css_file, 'r') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# Load CSS
+load_css()
+
+# Sidebar content
 with st.sidebar:
-    # Center the logo with reduced margin
-    st.markdown("""
-        <style>
-            .st-emotion-cache-d2ufr5.e1f1d6gn2 {
-            gap: 0px !important; /* Using !important to ensure override */
-            }
-            .sidebar-logo {
-                display: flex;
-                padding-bottom: 0px;
-                justify-content: center;
-                margin-bottom: 0px;
-            }
-            .sidebar-title {
-                margin-top: 0;
-                padding-top: 0px;
-                padding-top: 0;
-            }
-            /* Style for navigation options */
-            .stRadio > div {
-                font-size: 1.2rem;
-            }
-            .stRadio > div > label {
-                font-size: 1.2rem;
-                font-weight: bold;
-                padding: 8px 12px;
-                border: 2px solid #2196F3;
-                border-radius: 8px;
-                margin: 4px 0;
-                background-color: rgba(33, 150, 243, 0.1);
-                transition: all 0.3s ease;
-            }
-            .stRadio > div > label:hover {
-                background-color: rgba(33, 150, 243, 0.2);
-                transform: translateY(-2px);
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            }
-            /* Make emoji icons larger and bold */
-            .stRadio > div > label > div {
-                font-size: 1.8rem;
-                font-weight: bold;
-                margin-right: 8px;
-            }
-            /* Style for selected option */
-            .stRadio > div > label[data-checked="true"] {
-                background-color: #2196F3;
-                color: white;
-                border-color: #1976D2;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+    # Display circular logo area with name and slogan inside
+    st.markdown('''
+    <div class="sidebar-logo">
+        <div class="sidebar-logo-circle"></div>
+        <div class="sidebar-logo-content">
+            <!-- If you want to show the logo image, uncomment the next line -->
+            <!-- <img src="/static/mednexus_logo.png" alt="MedNexus Logo" /> -->
+            <h1>MED NEXUS</h1>
+            <p>Where Machine Learning Meets Lifesaving</p>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
     
-    # Display logo centered with custom size
-    st.markdown('<div class="sidebar-logo">', unsafe_allow_html=True)
-    display_logo(width=120)
+    # Display user info with custom styling
+   
+    st.write(f"Welcome, {st.session_state['username']}!")
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Title below logo with reduced spacing
-    st.markdown('<div class="sidebar-title" style="text-align: right;">', unsafe_allow_html=True)
-    st.title("MED NEXUS")
+    # Add logout button with custom styling
+    st.markdown('<div class="sidebar-logout">', unsafe_allow_html=True)
+    if st.button("Logout", key="logout_btn", use_container_width=True):
+        # Clear all session state variables
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
+        # Reset authentication state
+        st.session_state['authenticated'] = False
+        st.session_state['username'] = None
+        st.session_state['show_login'] = True
+        st.session_state['show_signup'] = False
+        st.rerun()
     st.markdown('</div>', unsafe_allow_html=True)
     
     st.write("---")
+    
+    # Navigation with custom styling
+    st.markdown('<div class="sidebar-nav">', unsafe_allow_html=True)
     page = st.radio(
         "Navigation",
         ["Home", "AI Assistance", "Heart Disease", "Kidney Disease", "Diabetes", "Liver Disease", "Stroke"],
         format_func=lambda x: f"📊 {x}" if x == "Home" else f"🤖 {x}" if x == "AI Assistance" else f"❤️ {x}" if x == "Heart Disease" else f"🫘 {x}" if x == "Kidney Disease" else f"🩸 {x}" if x == "Diabetes" else f"🫀 {x}" if x == "Liver Disease" else f"🧠 {x}"
     )
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Homepage content
 if page == "Home":
