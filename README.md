@@ -45,6 +45,14 @@ MedNexus is a state-of-the-art medical diagnosis platform that leverages machine
 - Visual data representation
 - Responsive design
 - Dark/Light mode support
+- Modern dark-themed interface with blue-green gradients
+- Responsive and intuitive web application
+- Interactive input forms with improved validation
+- Real-time predictions with loading animations
+- Enhanced visual hierarchy and accessibility features
+- Consistent styling across all components
+- Professional animations and hover effects
+- Dark/Light mode support with seamless transitions
 
 ## 🚀 Getting Started
 
@@ -120,7 +128,11 @@ MedNexus/
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: Streamlit
+- **Frontend**: 
+  - Streamlit
+  - Custom CSS with modular architecture
+  - Modern UI components
+  - Responsive design patterns
 - **Backend**: Python
 - **Machine Learning**: Scikit-learn
 - **AI Integration**: Google Generative AI (Gemini)
@@ -128,6 +140,11 @@ MedNexus/
 - **PDF Processing**: PyPDF2
 - **Authentication**: Custom implementation
 - **Model Storage**: Pickle
+- **Styling**: 
+  - Modern CSS3
+  - CSS Grid and Flexbox
+  - CSS Custom Properties
+  - CSS Animations and Transitions
 
 ## 📊 Model Details
 

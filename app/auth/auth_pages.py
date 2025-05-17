@@ -32,7 +32,7 @@ def show_auth_options():
     apply_auth_styles()
     show_mednexus_header()
     
-    st.markdown('<div class="welcome-container">', unsafe_allow_html=True)
+    
     st.markdown('<h2 class="welcome-title">Welcome to MedNexus</h2>', unsafe_allow_html=True)
     st.markdown('<p class="welcome-subtitle">Your AI-Powered Medical Assistant</p>', unsafe_allow_html=True)
     

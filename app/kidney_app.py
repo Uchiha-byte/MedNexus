@@ -3,7 +3,9 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+import json
 from utils import get_rotating_fact, analyze_pdf, KIDNEY_FACTS
+from auth.database import save_detection_result
 
 # Configure Google Generative AI with your API key
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
@@ -70,8 +72,53 @@ def display():
 
             # Make prediction using KNN model
             prediction = model.predict(features_scaled)
-            result = "Positive for Kidney Disease" if prediction[0] == 1 else "Negative for Kidney Disease"
-            st.write("KNN Model Prediction:", result)
+            prediction_proba = model.predict_proba(features_scaled)
+            
+            # Format the result
+            result = "Positive" if prediction[0] == 1 else "Negative"
+            probability = prediction_proba[0][1] if prediction[0] == 1 else prediction_proba[0][0]
+            
+            # Save to history
+            input_data = {
+                "Blood Pressure": blood_pressure,
+                "Specific Gravity": specific_gravity,
+                "Albumin": albumin,
+                "Sugar": blood_sugar,
+                "Red Blood Cells": red_blood_cells,
+                "Pus Cell": 0,
+                "Pus Cell Clumps": 0,
+                "Bacteria": 0,
+                "Blood Glucose Random": 0,
+                "Blood Urea": blood_urea,
+                "Serum Creatinine": 0,
+                "Sodium": 0,
+                "Potassium": 0,
+                "Hemoglobin": hemoglobin,
+                "Packed Cell Volume": 0,
+                "White Blood Cell Count": white_blood_cells,
+                "Red Blood Cell Count": red_blood_cells,
+                "Hypertension": 0,
+                "Diabetes Mellitus": 0,
+                "Coronary Artery Disease": 0,
+                "Appetite": 0,
+                "Pedal Edema": 0,
+                "Anemia": 0
+            }
+            save_detection_result(
+                username=st.session_state["username"],
+                detection_type="Kidney Disease",
+                input_data=json.dumps(input_data),
+                result=result,
+                prediction_probability=float(probability)
+            )
+            
+            # Display result
+            if prediction[0] == 1:
+                st.error("The model predicts that you are likely to have kidney disease.")
+                st.write(f"Confidence: {probability:.2%}")
+            else:
+                st.success("The model predicts that you are unlikely to have kidney disease.")
+                st.write(f"Confidence: {probability:.2%}")
 
             # Generate advice using Gemini Generative AI
             prompt = (

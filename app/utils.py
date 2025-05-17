@@ -18,6 +18,19 @@ DIABETES_FACTS = [
     "Diabetes increases the risk of heart disease and stroke."
 ]
 
+HEART_FACTS = [
+    "The heart beats about 100,000 times every day.",
+    "Your heart pumps about 2,000 gallons of blood every day.",
+    "The heart can continue beating even when disconnected from the body.",
+    "The heart begins beating at four weeks after conception.",
+    "The heart is the first organ to form during development.",
+    "The heart has its own electrical system.",
+    "The heart can beat on its own without any input from the brain.",
+    "The heart pumps blood to all parts of the body except the corneas.",
+    "The heart is located slightly to the left of the center of the chest.",
+    "The heart is about the size of a fist in an adult."
+]
+
 KIDNEY_FACTS = [
     "Your kidneys filter about 200 quarts of blood daily.",
     "Each kidney contains about 1 million filtering units called nephrons.",

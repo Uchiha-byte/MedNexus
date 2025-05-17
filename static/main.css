@@ -1,0 +1,547 @@
+/* Main Application Styles */
+
+/* Global Styles */
+.stApp {
+    background: #121212;
+    font-family: 'Inter', sans-serif;
+    color: #E0E0E0;
+}
+.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.en45cdb4 {
+    padding-top: 0px;
+  }
+
+/* Remove default Streamlit padding */
+.main .block-container {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    max-width: 100% !important;
+}
+
+.stApp > header {
+    display: none;
+}
+
+/* Main Header Styles */
+.main-header {
+    text-align: center;
+    padding: 0.5rem 0 2rem 0;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+/* Pulse effect */
+.heartbeat-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        transparent 30%,
+        rgba(255, 255, 255, 0.03) 40%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 60%
+    );
+    animation: heartbeatPulse 2s ease-in-out infinite;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+@keyframes heartbeatPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Override any Streamlit hiding behavior */
+.element-container:has(.main-header) {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Animated Title */
+.main-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+    animation: titleFloat 3s ease-in-out infinite;
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+}
+
+.main-header h1::before {
+    content: 'MEDNEXUS';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        270deg,
+        #1E88E5 0%,
+        #43A047 25%,
+        #1E88E5 50%,
+        #43A047 75%,
+        #1E88E5 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s linear infinite;
+    background-size: 400% 100%;
+    z-index: 1;
+}
+
+.main-header h1::after {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -30%;
+    width: 120%;
+    height: 160%;
+    background: radial-gradient(circle at center, 
+        rgba(30, 136, 229, 0.1) 0%,
+        rgba(67, 160, 71, 0.1) 50%,
+        transparent 70%);
+    z-index: -1;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Title Animations */
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: -200% 50%;
+    }
+    100% {
+        background-position: -400% 50%;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+/* Subtitle Animation */
+.main-header .subtitle {
+    font-size: 1.2rem;
+    position: relative;
+    display: inline-block;
+    margin-top: 0;
+    -webkit-text-fill-color: transparent;
+    z-index: 2;
+    background: rgba(18, 18, 18, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.main-header .subtitle::before {
+    content: 'Where Machine Learning Meets Lifesaving';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        270deg,
+        #43A047 0%,
+        #1E88E5 25%,
+        #43A047 50%,
+        #1E88E5 75%,
+        #43A047 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s linear infinite;
+    animation-delay: -4s;
+    background-size: 400% 100%;
+    z-index: 2;
+}
+
+/* Title Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Letter Animation for MedNexus */
+.animated-letter {
+    display: inline-block;
+    animation: letterFloat 2s ease-in-out infinite;
+}
+
+.animated-letter:nth-child(1) { animation-delay: 0.1s; }
+.animated-letter:nth-child(2) { animation-delay: 0.2s; }
+.animated-letter:nth-child(3) { animation-delay: 0.3s; }
+.animated-letter:nth-child(4) { animation-delay: 0.4s; }
+.animated-letter:nth-child(5) { animation-delay: 0.5s; }
+.animated-letter:nth-child(6) { animation-delay: 0.6s; }
+.animated-letter:nth-child(7) { animation-delay: 0.7s; }
+.animated-letter:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes letterFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Stat Cards */
+.stat-card {
+    background: rgba(30, 30, 30, 0.95);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    color: #90CAF9;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Feature Cards */
+.stInfo {
+    background: rgba(30, 30, 30, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.stInfo:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stInfo h3 {
+    color: #90CAF9 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Metrics Section */
+.metrics-container {
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stMetric {
+    background: rgba(30, 30, 30, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stMetric:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stMetric label {
+    color: #90CAF9 !important;
+    font-size: 1rem !important;
+}
+
+.stMetric .metric-value {
+    color: #E0E0E0 !important;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+}
+
+.stMetric .metric-delta {
+    color: #43A047 !important;
+    font-size: 0.9rem !important;
+}
+
+/* Section Headers */
+.section-header {
+    color: #90CAF9;
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* News Cards */
+.news-card {
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.news-card h3 {
+    color: #90CAF9;
+    margin-bottom: 1rem;
+}
+
+/* Call to Action */
+.cta-section {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 2rem;
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-section h3 {
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Dark theme overrides for Streamlit elements */
+.stMarkdown, .stText {
+    color: #E0E0E0;
+}
+
+.stAlert {
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+}
+
+/* Form Styling */
+.streamlit-form {
+    background: rgba(30, 30, 30, 0.95);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 1rem 0;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.streamlit-form:hover {
+    transform: translateY(-2px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Input Fields */
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input {
+    background-color: #2D2D2D !important;
+    color: #E0E0E0 !important;
+    border-radius: 8px;
+    border: 2px solid #404040;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.stTextInput > div > div > input:focus,
+.stNumberInput > div > div > input:focus {
+    border-color: #1E88E5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Sliders */
+.stSlider > div > div > div > div {
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+}
+
+.stSlider > div > div > div > div:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #388E3C 100%);
+}
+
+/* Global Button Style */
+.stButton > button,
+button.primary-button,
+.sidebar-logout button {
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.stButton > button:hover,
+button.primary-button:hover,
+.sidebar-logout button:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #388E3C 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+}
+
+.stButton > button:active,
+button.primary-button:active,
+.sidebar-logout button:active {
+    transform: translateY(0);
+}
+
+/* Prediction Results */
+.prediction-result {
+    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    animation: resultFadeIn 0.5s ease-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes resultFadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Info Cards */
+.stAlert {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.stAlert:hover {
+    transform: translateY(-2px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Loading Spinner */
+.stSpinner > div {
+    border-color: #2196F3;
+}
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .streamlit-form {
+        padding: 1rem;
+    }
+    
+    .stButton > button {
+        width: 100%;
+    }
+    
+    .prediction-result {
+        padding: 1rem;
+    }
+}
+
+/* Accessibility */
+:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .stButton > button {
+        background: #000000;
+        border: 2px solid #000000;
+    }
+    
+    .prediction-result {
+        background: #000000;
+        border: 2px solid #000000;
+    }
+} 

@@ -3,7 +3,9 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+import json
 from utils import get_rotating_fact, analyze_pdf, LIVER_FACTS
+from auth.database import save_detection_result
 
 # Configure Google Generative AI
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
@@ -71,8 +73,37 @@ def display():
 
             # Make prediction using KNN model
             prediction = model.predict(features_scaled)
-            result = "Positive for Liver Disease" if prediction[0] == 1 else "Negative for Liver Disease"
-            st.write("KNN Model Prediction:", result)
+            prediction_proba = model.predict_proba(features_scaled)
+            
+            # Format the result
+            result = "Positive" if prediction[0] == 1 else "Negative"
+            probability = prediction_proba[0][1] if prediction[0] == 1 else prediction_proba[0][0]
+            
+            # Save to history
+            input_data = {
+                "Total Bilirubin": total_bilirubin,
+                "Direct Bilirubin": direct_bilirubin,
+                "Alkaline Phosphatase": alkaline_phosphatase,
+                "Alamine Aminotransferase": alanine_aminotransferase,
+                "Total Proteins": total_proteins,
+                "Albumin": albumin,
+                "Albumin Globulin Ratio": albumin_globulin_ratio
+            }
+            save_detection_result(
+                username=st.session_state["username"],
+                detection_type="Liver Disease",
+                input_data=json.dumps(input_data),
+                result=result,
+                prediction_probability=float(probability)
+            )
+            
+            # Display result
+            if prediction[0] == 1:
+                st.error("The model predicts that you are likely to have liver disease.")
+                st.write(f"Confidence: {probability:.2%}")
+            else:
+                st.success("The model predicts that you are unlikely to have liver disease.")
+                st.write(f"Confidence: {probability:.2%}")
 
             # Generate advice using Gemini Generative AI
             prompt = (

@@ -3,7 +3,9 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+import json
 from utils import get_rotating_fact, analyze_pdf, DIABETES_FACTS
+from auth.database import save_detection_result
 
 # Configure Google Generative AI
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
@@ -67,9 +69,39 @@ def display():
         # Form submit button
         if st.form_submit_button("Predict"):
             # Make prediction using the KNN model
-            knn_prediction = knn_model.predict(scaled_data)
-            knn_result = "You have Diabetes" if knn_prediction == 1 else "You don't have Diabetes"
-            st.write(f"KNN Model Prediction: {knn_result}")
+            prediction = knn_model.predict(scaled_data)
+            prediction_proba = knn_model.predict_proba(scaled_data)
+            
+            # Format the result
+            result = "Positive" if prediction[0] == 1 else "Negative"
+            probability = prediction_proba[0][1] if prediction[0] == 1 else prediction_proba[0][0]
+            
+            # Save to history
+            input_data = {
+                "Pregnancies": Pregnancies,
+                "Glucose": Glucose,
+                "Blood Pressure": BloodPressure,
+                "Skin Thickness": SkinThickness,
+                "Insulin": Insulin,
+                "BMI": BMI,
+                "Diabetes Pedigree Function": DiabetesPedigreeFunction,
+                "Age": Age
+            }
+            save_detection_result(
+                username=st.session_state["username"],
+                detection_type="Diabetes",
+                input_data=json.dumps(input_data),
+                result=result,
+                prediction_probability=float(probability)
+            )
+            
+            # Display result
+            if prediction[0] == 1:
+                st.error("The model predicts that you are likely to have diabetes.")
+                st.write(f"Confidence: {probability:.2%}")
+            else:
+                st.success("The model predicts that you are unlikely to have diabetes.")
+                st.write(f"Confidence: {probability:.2%}")
 
             # Prepare prompt for Generative AI model
             prompt = (
@@ -78,7 +110,7 @@ def display():
                 f"Pregnancies: {Pregnancies}, Glucose: {Glucose}, Blood Pressure: {BloodPressure}, "
                 f"Skin Thickness: {SkinThickness}, Insulin: {Insulin}, BMI: {BMI}, "
                 f"Diabetes Pedigree Function: {DiabetesPedigreeFunction}, Age: {Age}\n\n"
-                f"I have been diagnosed with {knn_result}. Please analyze and suggest potential next steps "
+                f"I have been diagnosed with {result}. Please analyze and suggest potential next steps "
                 f"for managing the condition, and make the response concise and in bullet points."
             )
 

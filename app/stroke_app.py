@@ -3,7 +3,9 @@ import pickle
 import numpy as np
 import google.generativeai as genai
 import os
+import json
 from utils import get_rotating_fact, analyze_pdf, STROKE_FACTS
+from auth.database import save_detection_result
 
 # Configure Google Generative AI with your API key
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
@@ -81,8 +83,40 @@ def display():
         # Perform prediction
         if st.form_submit_button("Predict"):
             prediction = model.predict(scaled_data)
-            result = "High risk of stroke" if prediction[0] == 1 else "Low risk of stroke"
-            st.write("Prediction:", result)
+            prediction_proba = model.predict_proba(scaled_data)
+            
+            # Format the result
+            result = "High Risk" if prediction[0] == 1 else "Low Risk"
+            probability = prediction_proba[0][1] if prediction[0] == 1 else prediction_proba[0][0]
+            
+            # Save to history
+            input_data = {
+                "Age": age,
+                "Gender": gender,
+                "Hypertension": hypertension,
+                "Heart Disease": heart_disease,
+                "Ever Married": ever_married,
+                "Work Type": work_type,
+                "Residence Type": residence_type,
+                "Average Glucose Level": avg_glucose_level,
+                "BMI": bmi,
+                "Smoking Status": smoking_status
+            }
+            save_detection_result(
+                username=st.session_state["username"],
+                detection_type="Stroke Risk",
+                input_data=json.dumps(input_data),
+                result=result,
+                prediction_probability=float(probability)
+            )
+            
+            # Display result
+            if prediction[0] == 1:
+                st.error("The model predicts that you are at high risk of stroke.")
+                st.write(f"Confidence: {probability:.2%}")
+            else:
+                st.success("The model predicts that you are at low risk of stroke.")
+                st.write(f"Confidence: {probability:.2%}")
 
             # Generate advice using Gemini Generative AI
             prompt = (

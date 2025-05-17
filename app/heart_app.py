@@ -6,6 +6,9 @@ import os
 import PyPDF2
 import random
 from datetime import datetime
+import json
+from utils import get_rotating_fact, analyze_pdf, HEART_FACTS
+from auth.database import save_detection_result
 
 # Configure Google Generative AI with your API key
 genai.configure(api_key="AIzaSyB-PZFQHw22Y1pHRNLeTeZ8LpeP92oqfqU")  # Replace with your actual API key
@@ -24,11 +27,11 @@ HEART_FACTS = [
     "The heart is about the size of a fist in an adult."
 ]
 
-def get_rotating_fact():
+def get_rotating_fact(facts):
     # Use the current date to determine which fact to show
     today = datetime.now().date()
-    fact_index = (today.day + today.month) % len(HEART_FACTS)
-    return HEART_FACTS[fact_index]
+    fact_index = (today.day + today.month) % len(facts)
+    return facts[fact_index]
 
 def analyze_pdf(pdf_file):
     try:
@@ -58,7 +61,7 @@ def display():
     st.title("Heart Disease Prediction App")
     
     # Display rotating heart fact
-    st.info(f"💓 Heart Fact of the Day: {get_rotating_fact()}")
+    st.info(f"💓 Heart Fact of the Day: {get_rotating_fact(HEART_FACTS)}")
     
     # Add PDF analysis section
     st.subheader("Analyze Heart-Related PDF Reports")
@@ -156,6 +159,46 @@ def display():
                     st.write("No response generated. Check your input.")
             except Exception as e:
                 st.error(f"An error occurred during AI response generation: {e}")
+
+            # Make prediction
+            prediction = knn_model.predict(scaled_data)
+            prediction_proba = knn_model.predict_proba(scaled_data)
+            
+            # Format the result
+            result = "Positive" if prediction[0] == 1 else "Negative"
+            probability = prediction_proba[0][1] if prediction[0] == 1 else prediction_proba[0][0]
+            
+            # Save to history
+            input_data = {
+                "Age": age,
+                "Sex": sex,
+                "Chest Pain Type": chest_pain_type,
+                "Resting Blood Pressure": resting_bp,
+                "Cholesterol": cholesterol,
+                "Fasting Blood Sugar": fasting_bs,
+                "Resting ECG": resting_ecg,
+                "Max Heart Rate": max_hr,
+                "Exercise Induced Angina": exercise_angina,
+                "ST Depression": oldpeak,
+                "ST Slope": st_slope,
+                "Number of Major Vessels": 0,  # Assuming default value
+                "Thalassemia": 0  # Assuming default value
+            }
+            save_detection_result(
+                username=st.session_state["username"],
+                detection_type="Heart Disease",
+                input_data=json.dumps(input_data),
+                result=result,
+                prediction_probability=float(probability)
+            )
+            
+            # Display result
+            if prediction[0] == 1:
+                st.error("The model predicts that you are likely to have heart disease.")
+                st.write(f"Confidence: {probability:.2%}")
+            else:
+                st.success("The model predicts that you are unlikely to have heart disease.")
+                st.write(f"Confidence: {probability:.2%}")
 
 if __name__ == '__main__':
     display()
