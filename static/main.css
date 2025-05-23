@@ -2,7 +2,7 @@
 
 /* Global Styles */
 .stApp {
-    background: #121212;
+    background: #0A0A0A;
     font-family: 'Inter', sans-serif;
     color: #E0E0E0;
 }
@@ -10,12 +10,19 @@
     padding-top: 0px;
   }
 
+
 /* Remove default Streamlit padding */
 .main .block-container {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
     max-width: 100% !important;
 }
+.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.en45cdb4 {
+    background-color: black;
+  }
+  .stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.en45cdb4 {
+    background-color: black;
+  }
 
 .stApp > header {
     display: none;
@@ -29,6 +36,7 @@
     position: relative;
     overflow: hidden;
     min-height: 200px;
+    background: rgba(10, 10, 10, 0.95);
 }
 
 /* Pulse effect */
@@ -221,18 +229,18 @@
 
 /* Stat Cards */
 .stat-card {
-    background: rgba(30, 30, 30, 0.95);
+    background: rgba(15, 15, 15, 0.95);
     padding: 1.5rem;
     border-radius: 12px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .stat-card h3 {
@@ -251,8 +259,8 @@
 
 /* Feature Cards */
 .stInfo {
-    background: rgba(30, 30, 30, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(15, 15, 15, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 12px !important;
     padding: 1.5rem !important;
     transition: all 0.3s ease !important;
@@ -260,8 +268,8 @@
 
 .stInfo:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .stInfo h3 {
@@ -271,16 +279,16 @@
 
 /* Metrics Section */
 .metrics-container {
-    background: rgba(30, 30, 30, 0.95);
+    background: rgba(15, 15, 15, 0.95);
     border-radius: 12px;
     padding: 1.5rem;
     margin: 2rem 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stMetric {
-    background: rgba(30, 30, 30, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 15, 15, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     padding: 1rem;
     transition: all 0.3s ease;
@@ -288,8 +296,8 @@
 
 .stMetric:hover {
     transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .stMetric label {
@@ -362,42 +370,51 @@
 }
 
 .stAlert {
-    background-color: #1E1E1E;
+    background-color: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     color: #E0E0E0;
+    border-radius: 10px;
+}
+
+.stAlert:hover {
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Form Styling */
 .streamlit-form {
-    background: rgba(30, 30, 30, 0.95);
+    background: rgba(15, 15, 15, 0.95);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     margin: 1rem 0;
     transition: transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .streamlit-form:hover {
     transform: translateY(-2px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Input Fields */
 .stTextInput > div > div > input,
-.stNumberInput > div > div > input {
-    background-color: #2D2D2D !important;
-    color: #E0E0E0 !important;
+.stNumberInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > select {
+    background-color: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #E0E0E0;
     border-radius: 8px;
-    border: 2px solid #404040;
     padding: 0.5rem 1rem;
     transition: all 0.3s ease;
 }
 
 .stTextInput > div > div > input:focus,
-.stNumberInput > div > div > input:focus {
+.stNumberInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus,
+.stSelectbox > div > div > select:focus {
     border-color: #1E88E5;
-    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
-    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px #1E88E5;
 }
 
 /* Sliders */
@@ -440,13 +457,12 @@ button.primary-button:active,
 
 /* Prediction Results */
 .prediction-result {
-    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
-    color: white;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 1.5rem;
-    border-radius: 10px;
-    margin: 1.5rem 0;
+    border-radius: 8px;
+    margin: 1rem 0;
     animation: resultFadeIn 0.5s ease-out;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes resultFadeIn {
@@ -475,33 +491,31 @@ button.primary-button:active,
 
 /* Loading Spinner */
 .stSpinner > div {
-    border-color: #2196F3;
+    border-color: #1E88E5;
+    border-top-color: transparent;
 }
 
 /* Tooltips */
 .tooltip {
     position: relative;
     display: inline-block;
+    color: #E0E0E0;
 }
 
 .tooltip .tooltiptext {
-    visibility: hidden;
-    background-color: #1E1E1E;
+    background-color: rgba(15, 15, 15, 0.95);
     color: #E0E0E0;
-    text-align: center;
-    padding: 5px 10px;
-    border-radius: 6px;
-    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
     z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
     opacity: 1;
 }
 
@@ -522,7 +536,7 @@ button.primary-button:active,
 
 /* Accessibility */
 :focus {
-    outline: 3px solid #2196F3;
+    outline: 2px solid #1E88E5;
     outline-offset: 2px;
 }
 
@@ -536,12 +550,10 @@ button.primary-button:active,
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
     .stButton > button {
-        background: #000000;
-        border: 2px solid #000000;
+        border: 2px solid #FFFFFF;
     }
     
     .prediction-result {
-        background: #000000;
-        border: 2px solid #000000;
+        border: 2px solid #FFFFFF;
     }
 } 
