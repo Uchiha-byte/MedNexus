@@ -39,12 +39,6 @@ MedNexus is a state-of-the-art medical diagnosis platform that leverages machine
   - Early warning system
 
 ### 💻 User Interface
-- Intuitive web application
-- Interactive input forms
-- Real-time predictions
-- Visual data representation
-- Responsive design
-- Dark/Light mode support
 - Modern dark-themed interface with blue-green gradients
 - Responsive and intuitive web application
 - Interactive input forms with improved validation
@@ -52,7 +46,36 @@ MedNexus is a state-of-the-art medical diagnosis platform that leverages machine
 - Enhanced visual hierarchy and accessibility features
 - Consistent styling across all components
 - Professional animations and hover effects
-- Dark/Light mode support with seamless transitions
+- Dark theme optimized for low-light conditions
+- Improved contrast and readability
+- Subtle borders and shadows for depth
+- Smooth transitions and hover effects
+- Loading states with skeleton screens
+- Progress indicators and animations
+
+### 🎨 Theme Features
+- **Dark Mode**
+  - Deep black background (#0A0A0A)
+  - Subtle component backgrounds (rgba(15, 15, 15, 0.95))
+  - Light text for optimal contrast (#E0E0E0)
+  - Accent colors: Blue (#1E88E5) and Green (#43A047)
+  - Secondary text in light blue (#90CAF9)
+  - Subtle borders with low opacity
+  - Consistent hover states
+  - Smooth transitions
+
+- **Accessibility**
+  - High contrast mode support
+  - Reduced motion preferences
+  - Keyboard navigation support
+  - Screen reader compatibility
+  - WCAG color contrast compliance
+
+- **Responsive Design**
+  - Mobile-first approach
+  - Adaptive layouts
+  - Touch-friendly interfaces
+  - Optimized for all screen sizes
 
 ## 🚀 Getting Started
 
@@ -122,6 +145,9 @@ MedNexus/
 │   └── *_encoder.pkl     # Encoders
 ├── datasets/              # Training data
 ├── static/               # Static assets
+│   ├── main.css         # Main styles
+│   ├── sidebar.css      # Sidebar styles
+│   └── loading.css      # Loading animations
 ├── requirements.txt      # Dependencies
 └── README.md            # Documentation
 ```
@@ -145,6 +171,8 @@ MedNexus/
   - CSS Grid and Flexbox
   - CSS Custom Properties
   - CSS Animations and Transitions
+  - Dark theme optimization
+  - Accessibility features
 
 ## 📊 Model Details
 
@@ -208,3 +236,5 @@ This application is for educational and research purposes only. The predictions 
 - [ ] Integration with medical devices
 - [ ] Telemedicine features
 - [ ] Patient history tracking
+- [ ] Theme customization options
+- [ ] Additional accessibility features
