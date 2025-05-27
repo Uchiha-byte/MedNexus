@@ -6,12 +6,12 @@
 /* MedNexus header styles */
 .mednexus-header {
     text-align: center;
-    padding: 3rem 0;
-    margin: 2rem auto;
+    padding: 2rem 0;
+    margin: 1rem auto 2rem;
     background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
     position: relative;
     border-radius: 20px;
-    max-width: 1200px;
+    max-width: 800px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
@@ -32,12 +32,8 @@
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* Floating particles effect */
@@ -67,9 +63,9 @@
 
 /* Enhanced title text effects */
 .mednexus-title {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #64B5F6 0%, #81C784 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #E3F2FD 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -94,14 +90,10 @@
 
 /* Enhanced subtitle text effects */
 .mednexus-subtitle {
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, #90CAF9 0%, #A5D6A7 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
     margin-top: 0.5rem;
     letter-spacing: 1px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 2;
     animation: subtitleFloat 4s ease-in-out infinite;
@@ -120,13 +112,14 @@
 
 /* Main container styles */
 .auth-container {
-    max-width: 450px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-    background: #2d2d2d;
-    border: 1px solid #404040;
+    background: rgba(45, 45, 45, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     animation: containerFade 0.5s ease-out;
 }
 
@@ -144,11 +137,11 @@
 /* Enhanced title styles */
 .auth-title {
     text-align: center;
-    color: #64B5F6;
-    font-size: 2.5rem;
+    color: #FFFFFF;
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     animation: titleSlide 0.5s ease-out;
 }
 
@@ -166,8 +159,8 @@
 /* Enhanced subtitle styles */
 .auth-subtitle {
     text-align: center;
-    color: #b0b0b0;
-    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
     margin-bottom: 2rem;
     animation: subtitleSlide 0.5s ease-out 0.2s both;
 }
@@ -185,7 +178,11 @@
 
 /* Form styles */
 .stForm {
-    padding: 1rem 0;
+    background: rgba(30, 30, 30, 0.5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
     animation: formFade 0.5s ease-out 0.4s both;
 }
 
@@ -202,24 +199,30 @@
 
 /* Input field styles */
 .stTextInput > div > div > input {
-    border-radius: 8px;
-    border: 2px solid #404040;
-    padding: 0.8rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: #333333;
-    color: #ffffff;
+    background-color: rgba(25, 25, 25, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
 }
 
 .stTextInput > div > div > input:focus {
-    border-color: #64B5F6;
-    box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.2);
-    transform: translateY(-2px);
+    border-color: #1E88E5 !important;
+    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+.stTextInput > div > div > input::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Label styles */
 .stTextInput > div > label {
-    color: #b0b0b0;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.3rem !important;
     transition: all 0.3s ease;
 }
 
@@ -229,35 +232,36 @@
 
 /* Button styles */
 .stButton > button {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
-    color: #ffffff;
-    border: none;
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.8rem 1.5rem !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    font-size: 0.9rem !important;
     position: relative;
     overflow: hidden;
 }
 
 .stButton > button:hover {
-    background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3) !important;
 }
 
 .stButton > button:active {
-    transform: translateY(0);
+    transform: translateY(0) !important;
 }
 
 /* Link styles */
 .auth-link {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #404040;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     animation: linkFade 0.5s ease-out 0.6s both;
 }
 
@@ -271,18 +275,18 @@
 }
 
 .auth-link button {
-    background: none;
-    border: none;
-    color: #64B5F6;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
+    color: #90CAF9 !important;
+    background: none !important;
+    border: none !important;
+    font-size: 0.9rem !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease !important;
 }
 
 .auth-link button:hover {
-    color: #42A5F5;
-    transform: translateY(-2px);
+    color: #1E88E5 !important;
+    background: rgba(30, 136, 229, 0.1) !important;
+    transform: translateY(-1px) !important;
 }
 
 .auth-link button::after {
@@ -302,12 +306,13 @@
 
 /* Error message styles */
 .stAlert {
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    background-color: rgba(244, 67, 54, 0.1);
-    border: 1px solid #f44336;
-    animation: shake 0.5s ease-in-out;
+    background-color: rgba(244, 67, 54, 0.1) !important;
+    color: #FF5252 !important;
+    border: 1px solid rgba(244, 67, 54, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 0.8rem 1rem !important;
+    margin: 1rem 0 !important;
+    animation: shake 0.5s ease-in-out !important;
 }
 
 @keyframes shake {
@@ -318,30 +323,32 @@
 
 /* Success message styles */
 .stSuccess {
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    background-color: rgba(76, 175, 80, 0.1);
-    border: 1px solid #4CAF50;
-    animation: successPulse 0.5s ease-out;
+    background-color: rgba(76, 175, 80, 0.1) !important;
+    color: #69F0AE !important;
+    border: 1px solid rgba(76, 175, 80, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 0.8rem 1rem !important;
+    margin: 1rem 0 !important;
+    animation: successPulse 0.5s ease-out !important;
 }
 
 @keyframes successPulse {
     0% { transform: scale(0.95); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.02); }
     100% { transform: scale(1); }
 }
 
 /* Welcome screen styles */
 .welcome-container {
-    text-align: center;
-    padding: 2rem;
-    background: #2d2d2d;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-    border: 1px solid #404040;
     max-width: 600px;
     margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 15px;
+    background: rgba(45, 45, 45, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     animation: welcomeFade 0.5s ease-out;
 }
 
@@ -357,10 +364,10 @@
 }
 
 .welcome-title {
-    font-size: 3rem;
-    color: #64B5F6;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: #FFFFFF;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     animation: welcomeTitleSlide 0.5s ease-out 0.2s both;
 }
 
@@ -376,8 +383,8 @@
 }
 
 .welcome-subtitle {
-    font-size: 1.2rem;
-    color: #b0b0b0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
     margin-bottom: 2rem;
     animation: welcomeSubtitleSlide 0.5s ease-out 0.4s both;
 }
@@ -443,4 +450,35 @@
 
 .stForm > div > div > button:active {
     transform: translateY(0);
+}
+
+/* Loading animation */
+.stSpinner > div {
+    border-color: #1E88E5 transparent transparent !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .auth-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .mednexus-header {
+        margin: 0.5rem 1rem 1.5rem;
+        padding: 1.5rem 0;
+    }
+    
+    .mednexus-title {
+        font-size: 2.2rem;
+    }
+    
+    .auth-title {
+        font-size: 1.8rem;
+    }
+    
+    .welcome-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
 } 
