@@ -76,6 +76,9 @@
     z-index: 2;
     animation: titleGlow 3s ease-in-out infinite;
 }
+.auth-container.ai-style-change-1 { /*Auth container removed*/
+    display: none !important;
+  }
 
 @keyframes titleGlow {
     0%, 100% {
