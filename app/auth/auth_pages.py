@@ -32,10 +32,11 @@ def show_auth_options():
     apply_auth_styles()
     show_mednexus_header()
     
-    
+    st.markdown('<div class="welcome-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="welcome-title">Welcome to MedNexus</h2>', unsafe_allow_html=True)
     st.markdown('<p class="welcome-subtitle">Your AI-Powered Medical Assistant</p>', unsafe_allow_html=True)
     
+    st.markdown('<div class="auth-options">', unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     
     with col1:
@@ -50,21 +51,23 @@ def show_auth_options():
             st.session_state['show_signup'] = True
             st.rerun()
     
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 def show_login_page():
     """Display the login page."""
     apply_auth_styles()
     show_mednexus_header()
 
-    
+    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="auth-title">Welcome Back!</h2>', unsafe_allow_html=True)
     st.markdown('<p class="auth-subtitle">Please login to access your account</p>', unsafe_allow_html=True)
     
-    with st.form("login_form"):
-        username = st.text_input("👤 Username")
-        password = st.text_input("🔑 Password", type="password")
-        submit = st.form_submit_button("Login")
+    with st.form("login_form", clear_on_submit=True):
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            username = st.text_input("👤 Username", placeholder="Enter your username")
+            password = st.text_input("🔑 Password", type="password", placeholder="Enter your password")
+            submit = st.form_submit_button("Login", use_container_width=True)
         
         if submit:
             if not username or not password:
@@ -81,12 +84,14 @@ def show_login_page():
                 except Exception as e:
                     st.error(f"An error occurred during login: {str(e)}")
     
-    st.markdown('<div class="auth-link">', unsafe_allow_html=True)
-    if st.button("Don't have an account? Sign up"):
-        st.session_state['show_login'] = False
-        st.session_state['show_signup'] = True
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown('<div class="auth-link">', unsafe_allow_html=True)
+        if st.button("Don't have an account? Sign up", use_container_width=True):
+            st.session_state['show_login'] = False
+            st.session_state['show_signup'] = True
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 def show_signup_page():
@@ -94,28 +99,26 @@ def show_signup_page():
     apply_auth_styles()
     show_mednexus_header()
     
-   
+    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
     st.markdown('<p class="auth-subtitle">Join MedNexus for personalized health insights</p>', unsafe_allow_html=True)
     
-    with st.form("signup_form"):
-        username = st.text_input("👤 Username")
-        email = st.text_input("📧 Email")
-        password = st.text_input("🔑 Password", type="password")
-        confirm_password = st.text_input("🔒 Confirm Password", type="password")
-        submit = st.form_submit_button("Create Account")
+    with st.form("signup_form", clear_on_submit=True):
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            username = st.text_input("👤 Username", placeholder="Choose a username")
+            email = st.text_input("📧 Email", placeholder="Enter your email")
+            password = st.text_input("🔑 Password", type="password", placeholder="Create a password")
+            confirm_password = st.text_input("🔒 Confirm Password", type="password", placeholder="Confirm your password")
+            submit = st.form_submit_button("Create Account", use_container_width=True)
         
         if submit:
-            # Validate all fields are filled
             if not username or not email or not password or not confirm_password:
                 st.error("Please fill in all fields!")
-            # Validate email format
             elif not validate_email(email):
                 st.error("Please enter a valid email address!")
-            # Validate password match
             elif password != confirm_password:
                 st.error("Passwords do not match!")
-            # Validate password length
             elif len(password) < 8:
                 st.error("Password must be at least 8 characters long!")
             else:
@@ -130,12 +133,14 @@ def show_signup_page():
                 except Exception as e:
                     st.error(f"An error occurred during signup: {str(e)}")
     
-    st.markdown('<div class="auth-link">', unsafe_allow_html=True)
-    if st.button("Already have an account? Login"):
-        st.session_state['show_login'] = True
-        st.session_state['show_signup'] = False
-        st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown('<div class="auth-link">', unsafe_allow_html=True)
+        if st.button("Already have an account? Login", use_container_width=True):
+            st.session_state['show_login'] = True
+            st.session_state['show_signup'] = False
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 def init_auth():
