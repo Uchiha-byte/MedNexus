@@ -2,8 +2,9 @@
 .sidebar .sidebar-content {
     background-color: #0A0A0A;
     color: #E0E0E0;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Logo Section */
@@ -12,21 +13,27 @@
   }
 .sidebar-logo {
     text-align: center;
-    padding: 1rem;
-    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2.5rem;
     position: relative;
-    background: rgba(10, 10, 10, 0.95);
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.15), rgba(67, 160, 71, 0.15));
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-logo-circle {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(145deg, #1E88E5 0%, #43A047 100%);
     border-radius: 50%;
-    margin: 0 auto 1rem;
+    margin: 0 auto 1.2rem;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.2);
 }
 
 /* Rotating gradient overlay */
@@ -87,18 +94,22 @@
 }
 
 .sidebar-logo-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 700;
     margin: 0;
     background: linear-gradient(135deg, #1E88E5 0%, #43A047 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
 }
 
 .sidebar-logo-content p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #90CAF9;
-    margin: 0.5rem 0 0;
+    margin: 0.6rem 0 0;
+    opacity: 0.9;
+    letter-spacing: 0.3px;
 }
 
 /* Welcome message styles */
@@ -133,23 +144,26 @@
 }
 
 .sidebar-logout button {
-    background-color: rgba(15, 15, 15, 0.95);
-    color: #E0E0E0;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.2), rgba(67, 160, 71, 0.2)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
 }
 
 .sidebar-logout button:hover {
-    background-color: rgba(30, 136, 229, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.3), rgba(67, 160, 71, 0.3)) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Navigation styles */
 .sidebar-nav {
-    padding: 1rem;
-    background: rgba(10, 10, 10, 0.95);
+    padding: 1.2rem;
+    background: rgba(15, 15, 15, 0.95);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-nav .stRadio > div {
@@ -164,29 +178,48 @@
 }
 
 .sidebar-nav .stRadio > div > div {
-    color: #E0E0E0;
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin: 0.4rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .sidebar-nav .stRadio > div > div:hover {
-    background-color: rgba(30, 136, 229, 0.1);
+    background: rgba(30, 136, 229, 0.15);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateX(5px);
+}
+
+.sidebar-nav .stRadio > div > div[aria-checked="true"] {
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.25), rgba(67, 160, 71, 0.25));
+    border-left: 3px solid #1E88E5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Navigation Description */
 .nav-description {
     font-size: 0.9rem;
-    color: #90CAF9;
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    border-radius: 4px;
-    background-color: rgba(15, 15, 15, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0.6rem 0;
+    padding: 0.9rem;
+    border-radius: 8px;
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Divider */
 .sidebar-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
-    margin: 1rem 0;
+    background: linear-gradient(to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.08), 
+        transparent
+    );
+    margin: 1.5rem 0;
 }
 
 /* User Info Section */
