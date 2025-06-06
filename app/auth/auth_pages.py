@@ -58,7 +58,6 @@ def show_login_page():
     apply_auth_styles()
     show_mednexus_header()
 
-    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="auth-title">Welcome Back!</h2>', unsafe_allow_html=True)
     st.markdown('<p class="auth-subtitle">Please login to access your account</p>', unsafe_allow_html=True)
     
@@ -99,7 +98,6 @@ def show_signup_page():
     apply_auth_styles()
     show_mednexus_header()
     
-    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
     st.markdown('<p class="auth-subtitle">Join MedNexus for personalized health insights</p>', unsafe_allow_html=True)
     
