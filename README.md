@@ -1,8 +1,31 @@
-# MedNexus - Advanced Disease Diagnosis with ML and AI
+# MEDNEXUS
 
-MedNexus is a comprehensive Advance Disease Diagonosis with ML and AI platform that uses machine learning to predict various diseases including heart disease, kidney disease, diabetes, liver disease, and stroke. The platform provides an intuitive web interface for users to input their medical data and receive predictions.
+<div align="center">
 
-MedNexus is a state-of-the-art medical diagnosis platform that leverages machine learning and artificial intelligence to provide accurate predictions for various diseases. The platform combines traditional ML models with cutting-edge AI capabilities to deliver comprehensive health insights.
+<img src="static/mednexus_logo.png" alt="MedNexus Logo" width="300"/>
+
+### *Empowering Health Insights Through Intelligent Predictions*
+
+[![Last Commit](https://img.shields.io/badge/last%20commit-today-success)](https://github.com/uchiha_byte/MedNexus)
+[![Jupyter Notebook](https://img.shields.io/badge/jupyter-notebook-orange.svg)](https://github.com/uchiha_byte/MedNexus)
+[![Model Accuracy](https://img.shields.io/badge/accuracy-99.6%25-blue.svg)](https://github.com/uchiha_byte/MedNexus)
+[![Languages](https://img.shields.io/badge/languages-3-informational)](https://github.com/uchiha_byte/MedNexus)
+
+### Built with the tools and technologies:
+
+[![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://github.com/uchiha_byte/MedNexus)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://github.com/uchiha_byte/MedNexus)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://github.com/uchiha_byte/MedNexus)
+[![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)](https://github.com/uchiha_byte/MedNexus)
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://github.com/uchiha_byte/MedNexus)
+[![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)](https://github.com/uchiha_byte/MedNexus)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://github.com/uchiha_byte/MedNexus)
+
+</div>
+
+MedNexus is a comprehensive Advance Disease Diagnosis with ML and AI platform that uses machine learning to predict various diseases including heart disease, kidney disease, diabetes, liver disease, and stroke. The platform provides an intuitive web interface for users to input their medical data and receive predictions.
+
+MedNexus is a state-of-the-art medical diagnosis platform that leverages machine learning and artificial intelligence to provide accurate health insights. The platform combines traditional ML models with cutting-edge AI capabilities to deliver comprehensive health insights.
 
 ## 🌟 Key Features
 
@@ -37,6 +60,25 @@ MedNexus is a state-of-the-art medical diagnosis platform that leverages machine
   - Risk factor analysis
   - Lifestyle impact assessment
   - Early warning system
+
+### 🎯 Model Training System
+- **Automated Training Pipeline**
+  - Unified training script for all disease models
+  - Automated data preprocessing and feature engineering
+  - Comprehensive logging and model versioning
+  - Automatic handling of missing values and categorical variables
+
+- **Model Management**
+  - Timestamped model versions
+  - Separate storage of models and scalers
+  - Performance metrics tracking
+  - Easy model deployment system
+
+- **Data Processing Features**
+  - Intelligent missing value imputation
+  - Automatic categorical variable encoding
+  - Feature scaling and normalization
+  - Cross-validation support
 
 ### 💻 User Interface
 - Modern dark-themed interface with blue-green gradients
@@ -84,6 +126,7 @@ MedNexus is a state-of-the-art medical diagnosis platform that leverages machine
 - pip (Python package installer)
 - Virtual environment (recommended)
 - Google Cloud API key (for Gemini AI features)
+- Required Python packages (scikit-learn, pandas, numpy, etc.)
 
 ### Installation
 
@@ -115,7 +158,12 @@ pip install -r requirements.txt
 GOOGLE_API_KEY=your_api_key_here
 ```
 
-5. Run the application:
+5. Train the models (optional - pre-trained models are included):
+```bash
+python train.py
+```
+
+6. Run the application:
 ```bash
 streamlit run app/main.py
 ```
@@ -135,19 +183,18 @@ MedNexus/
 │   ├── auth/              # Authentication system
 │   ├── static/            # Static assets
 │   └── utils/             # Utility functions
-├── backend/               # Model development
-│   ├── Disease Prediction using Symptoms.ipynb
-│   ├── Disease Detection.ipynb
-│   └── Alzheimer Detection.ipynb
+├── train.py               # Model training script
+├── datasets/              # Training datasets
+│   ├── heart.csv         # Heart disease dataset
+│   ├── kidney.csv        # Kidney disease dataset
+│   ├── liver.csv         # Liver disease dataset
+│   ├── diabetes.csv      # Diabetes dataset
+│   └── stroke.csv        # Stroke dataset
 ├── predictors/            # Trained models
-│   ├── *_knn.pkl         # KNN models
-│   ├── *_scaler.pkl      # Data scalers
-│   └── *_encoder.pkl     # Encoders
-├── datasets/              # Training data
+│   ├── *_model_*.joblib  # Trained models with timestamps
+│   └── *_scaler_*.joblib # Feature scalers with timestamps
+├── backend/               # Model development notebooks
 ├── static/               # Static assets
-│   ├── main.css         # Main styles
-│   ├── sidebar.css      # Sidebar styles
-│   └── loading.css      # Loading animations
 ├── requirements.txt      # Dependencies
 └── README.md            # Documentation
 ```
@@ -159,34 +206,51 @@ MedNexus/
   - Custom CSS with modular architecture
   - Modern UI components
   - Responsive design patterns
-- **Backend**: Python
-- **Machine Learning**: Scikit-learn
+- **Backend**: 
+  - Python
+  - Scikit-learn for ML models
+  - Pandas & NumPy for data processing
+- **Machine Learning**: 
+  - RandomForest Classifier
+  - Standard Scaling
+  - Automated feature engineering
+  - Model versioning system
 - **AI Integration**: Google Generative AI (Gemini)
-- **Data Processing**: Pandas, NumPy
-- **PDF Processing**: PyPDF2
+- **Data Processing**: 
+  - Automated data preprocessing
+  - Missing value handling
+  - Categorical encoding
+  - Feature scaling
 - **Authentication**: Custom implementation
-- **Model Storage**: Pickle
-- **Styling**: 
-  - Modern CSS3
-  - CSS Grid and Flexbox
-  - CSS Custom Properties
-  - CSS Animations and Transitions
-  - Dark theme optimization
-  - Accessibility features
+- **Model Storage**: joblib serialization
+- **Logging**: Python logging module
 
-## 📊 Model Details
+## 📊 Model Training
 
-### Algorithm
-- K-Nearest Neighbors (KNN)
-- Standard Scaling
-- Label Encoding
-- Cross-validation
+### Training Process
+1. **Data Preprocessing**
+   - Automatic missing value imputation
+   - Categorical variable encoding
+   - Feature scaling
+   - Train-test splitting
+
+2. **Model Training**
+   - RandomForest Classifier training
+   - Hyperparameter optimization
+   - Cross-validation
+   - Performance metrics calculation
+
+3. **Model Storage**
+   - Automatic versioning with timestamps
+   - Separate storage of models and scalers
+   - Comprehensive logging
+   - Easy model deployment
 
 ### Performance Metrics
-- Accuracy: 95%+
-- Response Time: < 5 seconds
-- Real-time predictions
-- Continuous model updates
+- Accuracy: 95%+ on test sets
+- Detailed classification reports
+- Confusion matrices
+- Real-time prediction capability
 
 ## 🔒 Security Features
 
