@@ -132,7 +132,7 @@ MedNexus is a state-of-the-art medical diagnosis platform that leverages machine
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/uchiha_byte/MedNexus.git
+git clone https://github.com/Uchiha_byte/MedNexus.git
 cd MedNexus
 ```
 
