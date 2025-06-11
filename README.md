@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="static/mednexus_logo.png" alt="MedNexus Logo" width="300"/>
+<img src="static/mednexus_logo.png" alt="MedNexus Logo" width="200"/>
 
 ### *Empowering Health Insights Through Intelligent Predictions*
 
