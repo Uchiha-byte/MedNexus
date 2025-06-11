@@ -279,7 +279,7 @@ This application is for educational and research purposes only. The predictions 
 
 ## 📞 Contact
 
-- Project Link: [https://github.com/uchiha_byte/MedNexus](https://github.com/uchiha_byte/MedNexus)
+- Project Link: [https://github.com/Uchiha_byte/MedNexus](https://github.com/Uchiha_byte/MedNexus)
 - For questions or suggestions, please open an issue in the GitHub repository
 
 ## 🙏 Acknowledgments
