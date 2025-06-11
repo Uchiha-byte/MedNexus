@@ -1,4 +1,4 @@
-# MEDNEXUS
+# MedNexus - Advanced Disease Diagnosis with ML and AI
 
 <div align="center">
 
